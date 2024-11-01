@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/teachers/rank', async (req, res) => {
     try {
-        const teachersSnapshot = await db.collection('teachers')
+        const teachersSnapshot = await db.collection('teachers')git
             .orderBy('performanceScore', 'desc')
             .get();
         const teachers = teachersSnapshot.docs.map(doc => ({
