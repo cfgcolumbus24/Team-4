@@ -10,7 +10,7 @@ function App() {
       <Routes>
 
         {/* Route for the User Profile page */}
-        <Route path="/" element={<TeacherProfile />} />        
+        <Route path="/profile" element={<TeacherProfile />} />        
 
       </Routes>
     </Router>
