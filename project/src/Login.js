@@ -5,8 +5,13 @@ const RoleSelection = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = (role) => {
+    if (role === 'proprietor'){
+      navigate('/dashboard-prop');
+    } else{
+      navigate(`/signup?role=${role}`);
+    }
     // Navigate to the signup page with a query parameter indicating the selected role
-    navigate(`/signup?role=${role}`);
+    
   };
 
   // Function to navigate to the volunteer form
