@@ -1,6 +1,5 @@
-// TeacherInfo.js
 import React, { useEffect, useState } from 'react';
-import { db } from './firebaseConfig'; // Adjust the path as necessary
+import { db } from './firebaseConfig'; 
 import { collection, getDocs } from 'firebase/firestore';
 
 
@@ -22,11 +21,11 @@ const TeacherInfo = () => {
        }));
 
 
-       console.log("Fetched Teachers:", teacherList); // Log the fetched data
+       console.log("Fetched Teachers:", teacherList); 
        setTeachers(teacherList);
      } catch (err) {
        setError(err.message);
-       console.error("Error fetching teachers:", err); // Log the error
+       console.error("Error fetching teachers:", err); 
      } finally {
        setLoading(false);
      }
