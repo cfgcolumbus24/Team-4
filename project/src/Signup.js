@@ -23,7 +23,12 @@ const LoginPage = () => {
 
         if (storedPassword === password) {
           setLoginStatus('Success');
-          navigate('/dashboard');
+          
+          if (username.startsWith('prop')) {
+            navigate('/dashboard-prop');
+          } else {
+            navigate('/dashboard');
+          }
         } else {
           setLoginStatus('Invalid password');
         }
