@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 
-// Creating a calendar to be utilized in the homepage dashboard
-const Calendar = () => {
+const Calendar = ({ onDateClick }) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
 
   // Organize calendar 
@@ -40,18 +39,23 @@ const Calendar = () => {
 
         <div className="grid grid-cols-7 gap-2 mt-2">
           {days.map((day, index) => (
-            <div
+            <button
               key={index}
-              className={`p-2 rounded-lg ${
+              onClick={() => {
+                if (day.month() === currentMonth.month()) { // Check if date is in the current month
+                  onDateClick(day); // Trigger onDateClick with the selected day
+                }
+              }}
+              className={`p-2 rounded-lg w-full ${
                 day.isSame(dayjs(), 'day')
                   ? 'bg-blue-500 text-white'
                   : day.month() !== currentMonth.month()
                   ? 'text-gray-400'
-                  : 'text-gray-700'
+                  : 'text-gray-700 hover:bg-blue-200'
               }`}
             >
               {day.date()}
-            </div>
+            </button>
           ))}
         </div>
       </div>
