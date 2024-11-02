@@ -18,7 +18,7 @@ function classNames(...classes) {
 
 const Sidebar = ({ activeTab, onTabClick }) => (
   <div className="fixed left-0 top-0 w-64 h-full bg-gray-100 p-4 z-50">
-    <h2 className="font-bold text-2xl">PROPRIETER <span className="bg-blue-500 text-white px-1 rounded-md">PROFILE</span></h2>
+    <h2 className="font-bold text-2xl">PROPRIETOR <span className="bg-blue-500 text-white px-1 rounded-md">PROFILE</span></h2>
     <nav className="mt-4">
       <p className="text-gray-400 font-bold"></p>
       {navigation.map((item) => (
@@ -66,7 +66,7 @@ const DashboardCard = ({ title, count, percentage }) => (
 );
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState('info');
+  const [activeTab, setActiveTab] = useState('teacherinfo');
 
   const renderActiveTabContent = () => {
     switch (activeTab) {
