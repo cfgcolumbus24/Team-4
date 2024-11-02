@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import TeacherInfo from './TeacherInfo'; 
+import TeacherInfo from './teacherList'; 
 import StudentInfo from './stu_roster'
+import VolunteerResponse from './volunteerList'
 
 
 const navigation = [
@@ -71,12 +72,12 @@ const Dashboard = () => {
     switch (activeTab) {
       case 'teacherinfo':
         return <TeacherInfo />;
-      case 'studentprofile':
+      case 'studentinfo':
         return <StudentInfo />;
       case 'feedback':
-        return <TeacherFeedback/>;
-      case 'volunteer':
-        return <VolunteerInfo/>;
+        return <Feedback/>;
+      case 'v_response':
+        return <VolunteerResponse/>;
       default:
         return <TeacherInfo />;
     }
