@@ -6,7 +6,7 @@ const RoleSelection = () => {
 
   const handleButtonClick = (role) => {
     if (role === 'proprietor'){
-      navigate('/dashboard-prop');
+      navigate(`/signup?role=${role}`);
     } else{
       navigate(`/signup?role=${role}`);
     }
