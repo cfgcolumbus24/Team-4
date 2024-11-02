@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css'; 
+import './App.css';
 
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -18,85 +18,87 @@ function UserProfile() {
   const toggleEditing = () => setIsEditing((prev) => !prev);
 
   return (
-    <div className="bg-blue-80 shadow-md rounded-xl p-8 max-w-xl w-full h-150 border-black border-2 mx-auto mt-10" style={{ marginLeft: '430px', marginTop: '200px' }}>
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-semibold text-gray-800">Teacher Profile</h1>
-        <button 
-          onClick={toggleEditing} 
-          className="text-blue-500 hover:text-blue-700 font-medium"
-        >
-          {isEditing ? 'Save' : 'Edit'}
-        </button>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 p-4">
+        <div className="bg-white shadow-md rounded-xl p-8 max-w-xl w-full border-2 border-black">
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl font-semibold text-gray-800">Teacher Profile</h1>
+            <button
+                onClick={toggleEditing}
+                className="text-blue-500 hover:text-blue-700 font-medium"
+            >
+              {isEditing ? 'Save' : 'Edit'}
+            </button>
+          </div>
+
+          <div className="space-y-4 mt-4">
+            <div>
+              <h2 className="text-sm font-semibold text-gray-600">Name</h2>
+              {isEditing ? (
+                  <input
+                      type="text"
+                      name="name"
+                      value={userProfile.name}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+              ) : (
+                  <p className="text-gray-800">{userProfile.name}</p>
+              )}
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold text-gray-600">School</h2>
+              {isEditing ? (
+                  <input
+                      type="text"
+                      name="school"
+                      value={userProfile.school}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+              ) : (
+                  <p className="text-gray-800">{userProfile.school}</p>
+              )}
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold text-gray-600">Address</h2>
+              {isEditing ? (
+                  <input
+                      type="text"
+                      name="address"
+                      value={userProfile.address}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+              ) : (
+                  <p className="text-gray-800">{userProfile.address}</p>
+              )}
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold text-gray-600">Classes</h2>
+              {isEditing ? (
+                  <input
+                      type="text"
+                      name="classes"
+                      value={userProfile.classes.join(", ")}
+                      onChange={(e) =>
+                          setUserProfile((prev) => ({ ...prev, classes: e.target.value.split(", ") }))
+                      }
+                      className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+              ) : (
+                  <ul className="list-disc list-inside text-gray-800">
+                    {userProfile.classes.map((className, index) => (
+                        <li key={index}>{className}</li>
+                    ))}
+                  </ul>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div className="space-y-4 mt-4">
-        <div>
-          <h2 className="text-sm font-semibold text-gray-600">Name</h2>
-          {isEditing ? (
-            <input
-              type="text"
-              name="name"
-              value={userProfile.name}
-              onChange={handleChange}
-              className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          ) : (
-            <p className="text-gray-800">{userProfile.name}</p>
-          )}
-        </div>
-        
-        <div>
-          <h2 className="text-sm font-semibold text-gray-600">School</h2>
-          {isEditing ? (
-            <input
-              type="text"
-              name="school"
-              value={userProfile.school}
-              onChange={handleChange}
-              className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          ) : (
-            <p className="text-gray-800">{userProfile.school}</p>
-          )}
-        </div>
-        
-        <div>
-          <h2 className="text-sm font-semibold text-gray-600">Address</h2>
-          {isEditing ? (
-            <input
-              type="text"
-              name="address"
-              value={userProfile.address}
-              onChange={handleChange}
-              className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          ) : (
-            <p className="text-gray-800">{userProfile.address}</p>
-          )}
-        </div>
-        
-        <div>
-          <h2 className="text-sm font-semibold text-gray-600">Classes</h2>
-          {isEditing ? (
-            <input
-              type="text"
-              name="classes"
-              value={userProfile.classes.join(", ")}
-              onChange={(e) => 
-                setUserProfile((prev) => ({ ...prev, classes: e.target.value.split(", ") }))
-              }
-              className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          ) : (
-            <ul className="list-disc list-inside text-gray-800">
-              {userProfile.classes.map((className, index) => (
-                <li key={index}>{className}</li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-    </div>
   );
 }
 
