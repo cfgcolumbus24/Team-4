@@ -7,6 +7,11 @@ import TeacherProfile from './teacher-profile';
 import VolunteerForm from './VolunteerForm';
 import Feedback from './feedback';
 
+/** 
+* Nav Flow
+* Calender / Lesson Plan
+* Profile, Feedback
+*/
 const navigation = [
   { name: 'Calendar', key: 'calendar' },
   { name: 'Profile', key: 'profile' },

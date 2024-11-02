@@ -3,7 +3,7 @@ import { Menu, Transition } from '@headlessui/react';
 import TeacherInfo from './teacherList'; 
 import StudentInfo from './stu_roster'
 import VolunteerResponse from './volunteerList'
-
+import Feedback from './feedback'
 
 const navigation = [
   { name: 'TeacherInfo', key: 'teacherinfo' },
@@ -47,20 +47,6 @@ const Navbar = () => (
           {/* Additional dropdown items can go here */}
         </Transition>
       </Menu>
-    </div>
-  </div>
-);
-
-const DashboardCard = ({ title, count, percentage }) => (
-  <div className="bg-white p-6 rounded-md shadow-md">
-    <div className="flex justify-between">
-      <div>
-        <h3 className="text-xl font-semibold">{count}</h3>
-        <p className="text-gray-400">{title}</p>
-      </div>
-      <div className={`p-2 rounded-full ${percentage > 0 ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
-        {percentage > 0 ? `+${percentage}%` : `${percentage}%`}
-      </div>
     </div>
   </div>
 );

@@ -55,7 +55,7 @@ const TeacherInfo = () => {
            <li key={teacher.id} className="p-4 border border-gray-200 rounded-lg shadow hover:shadow-lg transition duration-200">
              <div className="flex justify-between items-center">
                <p className="font-medium text-lg">{teacher.name}</p>
-               <span className="bg-blue-300 text-white px-2 py-1 rounded-md">{teacher.classes.join(', ')}</span>
+               <span className="bg-blue-300 text-white px-2 py-1 rounded-md">{}</span>
              </div>
              <p className="mt-2 text-gray-600"><strong>School:</strong> {teacher.school}</p>
            </li>
