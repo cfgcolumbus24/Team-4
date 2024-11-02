@@ -226,7 +226,7 @@ const Dashboard = () => {
     if (activeTab === 'calendar') {
       return (
         <>
-          <h3 className="text-xl font-bold mb-4 text-center">Welcome to your Dashboard! Click on today's date to see your study plan. Happy teaching!</h3> {/* Calendar title */}
+          <h3 className="text-xl font-bold mb-4 text-center">Welcome to your Dashboard! Click on today's date to see your study plan below. Happy teaching!</h3> {/* Calendar title */}
           <Calendar onDateClick={handleDateClick} /> {/* Full month calendar */}
           {selectedDate && lessonPlans[selectedDate] && (
             <div className="mt-4 p-4 bg-white rounded-md shadow-md">
