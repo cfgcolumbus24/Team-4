@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from './firebaseConfig';
+import { db } from './firebaseConfig'; // Adjust the path if necessary
 import { collection, getDocs } from 'firebase/firestore';
 
 const TeacherInfo = () => {
@@ -10,7 +10,7 @@ const TeacherInfo = () => {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const teachersCollection = collection(db, "login"); // Ensure this matches your Firestore collection name
+        const teachersCollection = collection(db, "login"); // Adjust the collection name if needed
         const teacherSnapshot = await getDocs(teachersCollection);
 
         const teacherList = teacherSnapshot.docs.map(doc => ({
@@ -18,11 +18,9 @@ const TeacherInfo = () => {
           ...doc.data()
         }));
 
-        console.log("Fetched Teachers:", teacherList); 
         setTeachers(teacherList);
       } catch (err) {
         setError(err.message);
-        console.error("Error fetching teachers:", err); 
       } finally {
         setLoading(false);
       }
@@ -32,32 +30,39 @@ const TeacherInfo = () => {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-gray-500">Loading teachers...</p>;
+    return <p>Loading teachers...</p>;
   }
 
   if (error) {
-    return <p className="text-center text-red-500">Error fetching teachers: {error}</p>;
+    return <p>Error fetching teachers: {error}</p>;
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="w-[800px] mx-auto p-6 bg-white rounded-lg shadow-md">
-        <ul className="space-y-4">
-          {teachers.length > 0 ? (
-            teachers.map(teacher => (
-              <li key={teacher.id} className="p-4 border border-gray-200 rounded-lg shadow hover:shadow-lg transition duration-200">
-                <div className="flex justify-between items-center">
-                  <p className="font-medium text-lg">{teacher.name}</p>
-                  <span className="bg-blue-300 text-white px-2 py-1 rounded-md">{}</span>
-                </div>
-                <p className="mt-2 text-gray-600"><strong>School:</strong> {teacher.school}</p>
-              </li>
-            ))
-          ) : (
-            <p className="text-gray-500">No teachers found.</p>
-          )}
-        </ul>
-      </div>
+    <div className="m-0 p-0">
+      <h2 className="text-2xl font-bold mb-4">Teachers</h2>
+      <ul className="space-y-2">
+        {teachers.map(teacher => (
+          <li key={teacher.id} className="p-4 border rounded shadow">
+            <p><strong>Name:</strong> {teacher.name}</p>
+            <p><strong>School:</strong> {teacher.school}</p>
+            <p><strong>Classes:</strong></p>
+            <div className="flex flex-wrap gap-2">
+              {Array.isArray(teacher.classes) && teacher.classes.length > 0 ? (
+                teacher.classes.map((className, index) => (
+                  <span
+                    key={index}
+                    className="bg-blue-300 text-white px-2 py-1 rounded-md"
+                  >
+                    {className}
+                  </span>
+                ))
+              ) : (
+                <p>No classes available.</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
