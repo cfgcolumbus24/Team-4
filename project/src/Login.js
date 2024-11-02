@@ -7,6 +7,7 @@ const RoleSelection = () => {
   const handleButtonClick = (role) => {
     // Navigate to the login page with a query parameter indicating the selected role
     navigate(`/signup?role=${role}`);
+    
   };
 
   return (
