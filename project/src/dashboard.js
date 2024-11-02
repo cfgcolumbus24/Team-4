@@ -18,6 +18,7 @@ function classNames(...classes) {
 }
 
 const Sidebar = ({ activeTab, onTabClick }) => (
+const Sidebar = ({ activeTab, onTabClick }) => (
   <div className="fixed left-0 top-0 w-64 h-full bg-gray-100 p-4 z-50">
     <h2 className="font-bold text-2xl">USER <span className="bg-blue-500 text-white px-2 rounded-md">PROFILE</span></h2>
     <nav className="mt-4">
@@ -26,12 +27,18 @@ const Sidebar = ({ activeTab, onTabClick }) => (
         <button
           key={item.key}
           onClick={() => onTabClick(item.key)}
+        <button
+          key={item.key}
+          onClick={() => onTabClick(item.key)}
           className={classNames(
+            activeTab === item.key ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white',
+            'block rounded-md px-3 py-2 text-base font-medium w-full text-left'
             activeTab === item.key ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white',
             'block rounded-md px-3 py-2 text-base font-medium w-full text-left'
           )}
         >
           {item.name}
+        </button>
         </button>
       ))}
     </nav>
@@ -43,6 +50,7 @@ const Navbar = () => (
     <div className="ml-auto flex items-center">
       <Menu as="div" className="relative">
         <Menu.Button className="flex items-center text-gray-700 hover:text-gray-900">
+          <img className="h-8 w-8 rounded-full" src={userPhoto} alt="User Avatar" />
           <img className="h-8 w-8 rounded-full" src={userPhoto} alt="User Avatar" />
         </Menu.Button>
         <Transition as={React.Fragment}>
@@ -67,6 +75,36 @@ const DashboardCard = ({ title, count, percentage }) => (
   </div>
 );
 
+const Dashboard = () => {
+  const [activeTab, setActiveTab] = useState('calendar');
+
+  const renderActiveTabContent = () => {
+    switch (activeTab) {
+      case 'calendar':
+        return <Calendar />;
+      case 'profile':
+        return <TeacherProfile />;
+      case 'feedback':
+        return <DashboardCard title="Feedback" count="20" percentage={-3} />;
+      case 'volunteer':
+        return <VolunteerForm />;
+      default:
+        return <Calendar />;
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen">
+      <Sidebar activeTab={activeTab} onTabClick={setActiveTab} />
+      <div className="flex-1 bg-gray-200 ml-64 p-4">
+        <Navbar />
+        <div className="lg:col-span-2">
+          {renderActiveTabContent()}
+        </div>
+      </div>
+    </div>
+  );
+};
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('calendar');
 
