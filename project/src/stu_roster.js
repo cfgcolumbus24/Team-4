@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ExpandableTable = () => {
-  // State to hold rows of data
+  // rows
   const [rows, setRows] = useState([
     { id: 1, firstName: '', lastName: '', age: '' }, // Initial row
   ]);
@@ -9,7 +9,7 @@ const ExpandableTable = () => {
   const addRow = () => {
     setRows([
       ...rows,
-      { id: rows.length + 1, firstName: '', lastName: '', age: '' }, // New row with default empty values
+      { id: rows.length + 1, firstName: '', lastName: '', age: '' }, 
     ]);
   };
 
@@ -21,7 +21,7 @@ const ExpandableTable = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Expandable Table</h2>
+      <h2 className="text-xl font-semibold mb-4">Student Roster</h2>
       <table className="min-w-full bg-white border border-gray-300 rounded-md">
         <thead>
           <tr>
