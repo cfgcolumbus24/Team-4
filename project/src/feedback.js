@@ -22,8 +22,8 @@ const FeedbackForm = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-4">
-            <div className="w-full max-w-md p-6 space-y-4 bg-white rounded-xl shadow-xl">
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 p-4">
+            <div className="w-full max-w-md p-6 space-y-4 bg-white rounded-xl shadow-xl border-2 border-black">
                 <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">Daily Survey</h1>
                 <form action="https://formspree.io/f/mkgnjvee" method="POST" className="space-y-4">
                     
@@ -97,7 +97,7 @@ const FeedbackForm = () => {
 
                     <button
                         type="submit"
-                        className="w-full px-3 py-2 font-semibold text-white bg-purple-500 rounded hover:bg-purple-600 focus:outline-none focus:transform focus:scale-105 transition duration-300"
+                        className="w-full px-3 py-2 font-semibold text-white bg-black rounded hover:bg-gray-800 focus:outline-none focus:transform focus:scale-105 transition duration-300"
                     >
                         Submit Feedback
                     </button>
