@@ -11,7 +11,6 @@ const navigation = [
   { name: 'Calendar', key: 'calendar' },
   { name: 'Profile', key: 'profile' },
   { name: 'Feedback', key: 'feedback' },
-  { name: 'Volunteer', key: 'volunteer' },
 ];
 
 function classNames(...classes) {
@@ -79,8 +78,6 @@ const Dashboard = () => {
         return <TeacherProfile />;
       case 'feedback':
         return <Feedback/>;
-      case 'volunteer':
-        return <VolunteerForm />;
       default:
         return <Calendar />;
     }
