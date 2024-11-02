@@ -43,7 +43,7 @@ This project is designed to:
 
 - **Frontend**: React.js for creating an interactive and user-friendly interface.
 - **Backend**: Node.js and Express.js for handling API requests.
-- **Database**: MongoDB (or any preferred database) to store teacher, student, and feedback data securely.
+- **Database**: Firebase to store teacher, student, and feedback data securely.
 - **Styling**: Tailwind CSS for a responsive and customizable design.
 - **Data Collection**: Formspree or Airtable (optional) for handling feedback forms and real-time data collection.
 
