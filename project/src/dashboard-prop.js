@@ -3,7 +3,7 @@ import { Menu, Transition } from '@headlessui/react';
 import TeacherInfo from './teacherList'; 
 import StudentInfo from './stu_roster'
 import VolunteerResponse from './volunteerList'
-import Feedback from './feedback'
+import Feedback from './feedbackList'
 
 const navigation = [
   { name: 'Teacher Info', key: 'teacherinfo' },
