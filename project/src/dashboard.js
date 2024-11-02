@@ -5,6 +5,7 @@ import userPhoto from './opportunity_international_logo.jpeg';
 import Calendar from './calender';
 import TeacherProfile from './teacher-profile';
 import VolunteerForm from './VolunteerForm';
+import Feedback from './feedback';
 
 const navigation = [
   { name: 'Calendar', key: 'calendar' },
@@ -77,7 +78,7 @@ const Dashboard = () => {
       case 'profile':
         return <TeacherProfile />;
       case 'feedback':
-        return <DashboardCard title="Feedback" count="20" percentage={-3} />;
+        return <Feedback/>;
       case 'volunteer':
         return <VolunteerForm />;
       default:
