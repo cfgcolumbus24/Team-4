@@ -1,78 +1,64 @@
 const express = require('express');
 const admin = require('firebase-admin');
-
+const bodyParser = require('body-parser');
 const serviceAccount = require('./firebase-key.json');
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
 const db = admin.firestore();
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
-
-app.get('/teachers/rank', async (req, res) => {
+app.post('/volunteers', async (req, res) => {
+    const { name, email, availability, preferredSubjects } = req.body;
+    if (!name || !email || !availability || !preferredSubjects) {
+        return res.status(400).json({
+            success: false,
+            message: 'Name, email, availability, and preferred subjects are required.'
+        });
+    }
     try {
-        const teachersSnapshot = await db.collection('teachers')
-            .orderBy('performanceScore', 'desc')
-            .get();
-        const teachers = teachersSnapshot.docs.map(doc => ({
+        const volunteerRef = db.collection('volunteers').doc();
+        await volunteerRef.set({
+            name,
+            email,
+            availability,
+            preferredSubjects
+        });
+        res.status(201).json({
+            success: true,
+            message: 'Volunteer availability submitted successfully.',
+            volunteerId: volunteerRef.id
+        });
+    } catch (error) {
+        console.error("Error adding volunteer:", error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to submit volunteer availability.'
+        });
+    }
+});
+
+app.get('/volunteers', async (req, res) => {
+    try {
+        const volunteersSnapshot = await db.collection('volunteers').get();
+        const volunteers = volunteersSnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
         }));
 
         res.status(200).json({
             success: true,
-            rankedTeachers: teachers
+            volunteers
         });
     } catch (error) {
-        console.error("Error ranking teachers:", error);
+        console.error("Error retrieving volunteers:", error);
         res.status(500).json({
             success: false,
-            error: 'Failed to rank teachers'
-        });
-    }
-});
-
-app.post('/teachers/:id/evaluate', async (req, res) => {
-    const teacherId = req.params.id;
-    const { evaluationScore } = req.body;
-
-    if (typeof evaluationScore !== 'number' || evaluationScore < 1 || evaluationScore > 5) {
-        return res.status(400).json({
-            success: false,
-            message: 'Evaluation score must be a number between 1 and 5'
-        });
-    }
-    try {
-        const teacherRef = db.collection('teachers').doc(teacherId);
-        const teacherDoc = await teacherRef.get();
-
-        if (!teacherDoc.exists) {
-            return res.status(404).json({
-                success: false,
-                message: 'Teacher not found'
-            });
-        }
-        const { parentEvaluations = [] } = teacherDoc.data();
-        parentEvaluations.push(evaluationScore);
-        const performanceScore = parentEvaluations.reduce((sum, score) => sum + score, 0) / parentEvaluations.length;
-        await teacherRef.update({
-            parentEvaluations,
-            performanceScore
-        });
-
-        res.status(200).json({
-            success: true,
-            message: 'Evaluation added successfully',
-            updatedPerformanceScore: performanceScore
-        });
-    } catch (error) {
-        console.error("Error adding evaluation:", error);
-        res.status(500).json({
-            success: false,
-            error: 'Failed to add evaluation'
+            error: 'Failed to retrieve volunteers.'
         });
     }
 });
