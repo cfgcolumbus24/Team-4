@@ -3,13 +3,13 @@ import { Menu, Transition } from '@headlessui/react';
 import TeacherInfo from './teacherList'; 
 import StudentInfo from './stu_roster';
 import VolunteerResponse from './volunteerList';
-import Feedback from './feedback';
+import FeedbackList from './feedbackList';
 import ChatBox from './ChatBox'; // Import ChatBox component
 
 const navigation = [
   { name: 'Teacher Info', key: 'teacherinfo' },
   { name: 'Student Info', key: 'studentinfo' },
-  { name: 'Feedback', key: 'feedback' },
+  { name: 'FeedbackList', key: 'feedback' },
   { name: 'Volunteer Response', key: 'v_response' },
   { name: 'Chat', key: 'chat' }, // Add Chat tab
 ];
@@ -63,7 +63,7 @@ const Dashboard = () => {
       case 'studentinfo':
         return <StudentInfo />;
       case 'feedback':
-        return <Feedback />;
+        return <FeedbackList />;
       case 'v_response':
         return <VolunteerResponse />;
       case 'chat': // Render ChatBox when Chat tab is active
