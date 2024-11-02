@@ -51,6 +51,9 @@ This project is designed to:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/interactive-teacher-dashboard.git
-   cd interactive-teacher-dashboard
+   git clone https://github.com/cfgcolumbus24/Team-4.git
+   cd Team-4
+   cd project
+   npm install
+   npm start
    ```
