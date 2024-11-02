@@ -1,0 +1,57 @@
+Index: backend/app.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const express = require('express');\nconst admin = require('firebase-admin');\n\nconst serviceAccount = require('./firebase-key.json');\nadmin.initializeApp({\n    credential: admin.credential.cert(serviceAccount)\n});\n\nconst db = admin.firestore();\nconst app = express();\napp.use(express.json());\n\nconst PORT = process.env.PORT || 3000;\n\napp.get('/teachers/rank', async (req, res) => {\n    try {\n        const teachersSnapshot = await db.collection('teachers')git\n            .orderBy('performanceScore', 'desc')\n            .get();\n        const teachers = teachersSnapshot.docs.map(doc => ({\n            id: doc.id,\n            ...doc.data()\n        }));\n\n        res.status(200).json({\n            success: true,\n            rankedTeachers: teachers\n        });\n    } catch (error) {\n        console.error(\"Error ranking teachers:\", error);\n        res.status(500).json({\n            success: false,\n            error: 'Failed to rank teachers'\n        });\n    }\n});\n\napp.listen(PORT, () => {\n    console.log(`Server is running on port ${PORT}`);\n});\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/app.js b/backend/app.js
+--- a/backend/app.js	(revision f836d151687c99a4310f116ad510f828d61266be)
++++ b/backend/app.js	(date 1730503650443)
+@@ -34,7 +34,6 @@
+         });
+     }
+ });
+-
+ app.listen(PORT, () => {
+     console.log(`Server is running on port ${PORT}`);
+ });
+Index: backend/teacher_ranks.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/teacher_ranks.json b/backend/teacher_ranks.json
+new file mode 100644
+--- /dev/null	(date 1730501821925)
++++ b/backend/teacher_ranks.json	(date 1730501821925)
+@@ -0,0 +1,29 @@
++{
++  "firebaseCredentials": {
++    "type": "service_account",
++    "project_id": "your-firebase-project-id",
++    "private_key_id": "some-private-key-id",
++    "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR-PRIVATE-KEY\n-----END PRIVATE KEY-----\n",
++    "client_email": "firebase-adminsdk-xyz@your-firebase-project-id.iam.gserviceaccount.com",
++    "client_id": "some-client-id",
++    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
++    "token_uri": "https://oauth2.googleapis.com/token",
++    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
++    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-xyz%40your-firebase-project-id.iam.gserviceaccount.com"
++  },
++  "teachers": [
++    {
++      "name": "John Doe",
++      "performanceScore": 85
++    },
++    {
++      "name": "Jane Smith",
++      "performanceScore": 92
++    },
++    {
++      "name": "Sam Johnson",
++      "performanceScore": 78
++    }
++  ]
++}
++
