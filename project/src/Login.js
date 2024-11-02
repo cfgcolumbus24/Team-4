@@ -5,9 +5,13 @@ const RoleSelection = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = (role) => {
-    // Navigate to the login page with a query parameter indicating the selected role
+    // Navigate to the signup page with a query parameter indicating the selected role
     navigate(`/signup?role=${role}`);
-    
+  };
+
+  // Function to navigate to the volunteer form
+  const handleVolunteerClick = () => {
+    navigate('/volunteer'); // Adjust the path to your volunteer form's route
   };
 
   return (
@@ -26,6 +30,12 @@ const RoleSelection = () => {
             className="px-4 py-2 font-semibold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none"
           >
             Proprietor
+          </button>
+          <button
+            onClick={handleVolunteerClick} // Call the function for the volunteer button
+            className="px-4 py-2 font-semibold text-white bg-purple-600 rounded-md hover:bg-purple-700 focus:outline-none" // Optional styling for the volunteer button
+          >
+            Volunteer
           </button>
         </div>
       </div>
