@@ -1,19 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './Login';
-
+import RoleSelection from './Signup';
+import LoginPage from './Login';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* This will make the Login component load first as the default route */}
-        <Route path="/" element={<Login />} />
+      <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<RoleSelection />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
