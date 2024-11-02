@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css'; // Assuming Tailwind is imported in App.css or index.css
+import './App.css'; 
 
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -18,7 +18,7 @@ function UserProfile() {
   const toggleEditing = () => setIsEditing((prev) => !prev);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 max-w-md w-full mx-auto mt-10">
+    <div className="bg-blue-80 shadow-md rounded-xl p-8 max-w-xl w-full h-150 border-black border-2 mx-auto mt-10" style={{ marginLeft: '430px', marginTop: '200px' }}>
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold text-gray-800">Teacher Profile</h1>
         <button 
