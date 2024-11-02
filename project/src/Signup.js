@@ -13,6 +13,22 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
+      const proprietorDocRef = doc(db, 'proprietor', username);
+      const proprietorDoc = await getDoc(proprietorDocRef);
+
+      if (proprietorDoc.exists()) {
+        const storedPassword = proprietorDoc.data().password;
+
+        if (storedPassword === password) {
+          setLoginStatus('Success');
+          navigate('/dashboard-prop');
+          return; 
+        } else {
+          setLoginStatus('Invalid password');
+          return;
+        }
+      }
+
       const userDocRef = doc(db, 'login', username);
       const userDoc = await getDoc(userDocRef);
 
@@ -23,12 +39,7 @@ const LoginPage = () => {
 
         if (storedPassword === password) {
           setLoginStatus('Success');
-          
-          if (username.startsWith('prop')) {
-            navigate('/dashboard-prop');
-          } else {
-            navigate('/dashboard');
-          }
+          navigate('/dashboard');
         } else {
           setLoginStatus('Invalid password');
         }
