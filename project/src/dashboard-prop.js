@@ -76,9 +76,9 @@ const Dashboard = () => {
       case 'feedback':
         return <TeacherFeedback/>;
       case 'volunteer':
-        return <Volunteer/>;
+        return <VolunteerInfo/>;
       default:
-        return <Teacher Info />;
+        return <TeacherInfo />;
     }
   };
 

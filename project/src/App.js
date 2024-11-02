@@ -7,6 +7,7 @@ import Signup from './Signup';
 import RoleSelection from './Signup';
 import VolunteerForm from './VolunteerForm';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Proprietor from './dashboard-prop';
 
 
 function App() {
@@ -15,9 +16,12 @@ function App() {
       <Routes>
         {/* This will make the Login component load first as the default route */}
         <Route path="/" element={<Login />} />
+        
         <Route path="/signup" element={<Signup />} />
+        <Route path="/proprietor" element={<Proprietor />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/volunteer" element={<VolunteerForm />} />
+        <Route path="/proprietor" element={<Proprietor />} />
       </Routes>
     </Router>
   );
