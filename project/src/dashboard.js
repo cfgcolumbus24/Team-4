@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, BellIcon } from '@heroicons/react/24/outline';
-import userPhoto from '/Users/maria/Team-4/project/src/opportunity_international_logo.jpeg';
+import userPhoto from './opportunity_international_logo.jpeg';
 
 const navigation = [
   { name: 'Calendar', href: '#', current: true },
