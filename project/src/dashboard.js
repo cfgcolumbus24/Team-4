@@ -19,7 +19,12 @@ function classNames(...classes) {
 
 const Sidebar = ({ activeTab, onTabClick }) => (
   <div className="fixed left-0 top-0 w-64 h-full bg-gray-100 p-4 z-50">
-    <h2 className="font-bold text-2xl">USER <span className="bg-blue-300 text-white px-2 rounded-md">PROFILE</span></h2>
+    <h2 className="font-bold flex items-center justify-center text-2xl">
+  School 
+  <span className="bg-blue-300 text-white px-1 mx-2 rounded-md">
+    Sphere
+  </span>
+</h2>
     <nav className="mt-4">
       <p className="text-gray-400 font-bold">ADMIN</p>
       {navigation.map((item) => (
