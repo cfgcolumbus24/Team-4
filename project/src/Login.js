@@ -20,8 +20,8 @@ const RoleSelection = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-sm p-8 space-y-6 bg-white rounded-lg shadow-md">
+    <div className="flex items-center justify-center h-screen bg-blue-100">
+      <div className="w-full max-w-sm p-8 space-y-6 bg-white rounded-lg shadow-md border-2 border-black">
         <h2 className="text-2xl font-bold text-center text-gray-800">Select Role</h2>
         <div className="flex justify-around mt-6">
           <button
