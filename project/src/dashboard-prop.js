@@ -6,10 +6,10 @@ import VolunteerResponse from './volunteerList'
 import Feedback from './feedback'
 
 const navigation = [
-  { name: 'TeacherInfo', key: 'teacherinfo' },
-  { name: 'StudentInfo', key: 'studentinfo' },
+  { name: 'Teacher Info', key: 'teacherinfo' },
+  { name: 'Student Info', key: 'studentinfo' },
   { name: 'Feedback', key: 'feedback' },
-  { name: 'VolunteerResponse', key: 'v_response' },
+  { name: 'Volunteer Response', key: 'v_response' },
 ];
 
 function classNames(...classes) {
