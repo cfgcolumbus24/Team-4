@@ -12,14 +12,13 @@ const FeedbackList = () => {
       try {
         const feedbackCollection = collection(db, "feedback");
         const feedbackSnapshot = await getDocs(feedbackCollection);
-        
+
         const feedbackMap = {};
 
         feedbackSnapshot.docs.forEach(doc => {
           const feedback = doc.data();
           const teacherName = feedback.name;
           const feedbackDate = feedback.date?.toDate().toLocaleDateString();
-
           if (!feedbackMap[teacherName]) {
             feedbackMap[teacherName] = {
               dates: [],
