@@ -1,26 +1,44 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { db } from './firebaseConfig';
+import { doc, getDoc } from 'firebase/firestore';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const location = useLocation();
-  const role = new URLSearchParams(location.search).get('role');
+  const [loginStatus, setLoginStatus] = useState(null);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Later I will add logic to authenticate the user
-    console.log(`Role: ${role}, Username: ${username}, Password: ${password}`);
-    navigate(`/dashboard`);
+
+    try {
+      const userDocRef = doc(db, 'login', username);
+      const userDoc = await getDoc(userDocRef);
+
+      if (!userDoc.exists()) {
+        setLoginStatus('User not found');
+      } else {
+        const storedPassword = userDoc.data().password;
+
+        if (storedPassword === password) {
+          setLoginStatus('Success');
+          navigate('/dashboard');
+        } else {
+          setLoginStatus('Invalid password');
+        }
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setLoginStatus('An error occurred');
+    }
   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-gray-800">
-          {role ? `Login as ${role}` : 'Login'}
+          Login
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -50,6 +68,9 @@ const LoginPage = () => {
             Login
           </button>
         </form>
+        {loginStatus && (
+          <p className="mt-4 text-center text-green-600">{loginStatus}</p>
+        )}
       </div>
     </div>
   );
