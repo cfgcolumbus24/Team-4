@@ -47,8 +47,8 @@ const VolunteerForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="max-w-lg w-full mx-auto p-8 bg-white rounded-lg shadow-md">
+    <div className="flex items-center justify-center min-h-screen bg-blue-100">
+      <div className="max-w-lg w-full mx-auto p-8 bg-white rounded-lg shadow-md border border-black">
         <h2 className="text-2xl font-bold text-center mb-6">Volunteer Interest Form</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col">
