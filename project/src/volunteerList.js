@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from './firebaseConfig'; // Adjust the path as necessary
+import { db } from './firebaseConfig'; 
 import { collection, getDocs } from 'firebase/firestore';
 
 const VolunteersList = () => {
@@ -10,7 +10,7 @@ const VolunteersList = () => {
   useEffect(() => {
     const fetchVolunteers = async () => {
       try {
-        const volunteersCollection = collection(db, "volunteering"); // Change "volunteering" to your actual collection name
+        const volunteersCollection = collection(db, "volunteering"); 
         const volunteerSnapshot = await getDocs(volunteersCollection);
         
         const volunteerList = volunteerSnapshot.docs.map(doc => ({
