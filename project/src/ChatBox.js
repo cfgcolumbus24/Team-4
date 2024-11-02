@@ -27,7 +27,7 @@ const ChatBox = () => {
       console.error('Error fetching data:', error);
       setMessages((prevMessages) => [
         ...prevMessages,
-        { sender: 'bot', text: `Mathematics: 5 teachers\nScience: 3 teachers\nEnglish: 4 teachers\nHistory: 2 teachers\nArt: 1 teacher` },
+        { sender: 'bot', text: `Mathematics: 5 teachers, \nScience: 3 teachers, \nEnglish: 4 teachers, \nHistory: 2 teachers, \nArt: 1 teacher` },
       ]);
     }
   };
