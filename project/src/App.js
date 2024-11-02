@@ -1,10 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './Login';
-import Signup from './Signup';
-import Dashboard from './dashboard';
-
+import RoleSelection from './Signup';
+import LoginPage from './Login';
+import VolunteerForm from './VolunteerForm';
 
 function App() {
   return (
@@ -18,6 +17,7 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
 
