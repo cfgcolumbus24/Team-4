@@ -12,6 +12,56 @@ const app = express();
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
+
+app.post('/login', async (req, res) => {
+    const { email, password, userType } = req.body;
+    if (!email || !password || !userType) {
+        return res.status(400).json({
+            success: false,
+            message: 'Email, password, and user type are required.'
+        });
+    }
+
+    try {
+        const userCollection = db.collection('users');
+        const userSnapshot = await userCollection.where('email', '==', email).get();
+        if (userSnapshot.empty) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found.'
+            });
+        }
+
+        const userDoc = userSnapshot.docs[0];
+        const userData = userDoc.data();
+        if (userData.password !== password) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid password.'
+            });
+        }
+        if (userData.userType !== userType) {
+            return res.status(403).json({
+                success: false,
+                message: 'Unauthorized access for this user type.'
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: 'Login successful.',
+            userId: userDoc.id,
+            userType: userData.userType,
+            name: userData.name
+        });
+    } catch (error) {
+        console.error("Error logging in user:", error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to log in user.'
+        });
+    }
+});
+
 app.post('/volunteers', async (req, res) => {
     const { name, email, availability, preferredSubjects } = req.body;
     if (!name || !email || !availability || !preferredSubjects) {
