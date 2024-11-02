@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const location = useLocation();
   const role = new URLSearchParams(location.search).get('role');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Logic to handle login can be added here
+    // Later I will add logic to authenticate the user
     console.log(`Role: ${role}, Username: ${username}, Password: ${password}`);
+    navigate(`/dashboard`);
   };
 
   return (
