@@ -1,6 +1,8 @@
 const express = require('express');
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const bcrypt = require('bcrypt');
 const serviceAccount = require('./firebase-key.json');
 
 admin.initializeApp({
@@ -10,9 +12,9 @@ admin.initializeApp({
 const db = admin.firestore();
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
-
 app.post('/login', async (req, res) => {
     const { email, password, userType } = req.body;
     if (!email || !password || !userType) {
@@ -25,27 +27,22 @@ app.post('/login', async (req, res) => {
     try {
         const userCollection = db.collection('users');
         const userSnapshot = await userCollection.where('email', '==', email).get();
+
         if (userSnapshot.empty) {
-            return res.status(404).json({
-                success: false,
-                message: 'User not found.'
-            });
+            return res.status(404).json({ success: false, message: 'User not found.' });
         }
 
         const userDoc = userSnapshot.docs[0];
         const userData = userDoc.data();
-        if (userData.password !== password) {
-            return res.status(401).json({
-                success: false,
-                message: 'Invalid password.'
-            });
+        const isPasswordValid = await bcrypt.compare(password, userData.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ success: false, message: 'Invalid password.' });
         }
+
         if (userData.userType !== userType) {
-            return res.status(403).json({
-                success: false,
-                message: 'Unauthorized access for this user type.'
-            });
+            return res.status(403).json({ success: false, message: 'Unauthorized access for this user type.' });
         }
+
         res.status(200).json({
             success: true,
             message: 'Login successful.',
@@ -55,13 +52,9 @@ app.post('/login', async (req, res) => {
         });
     } catch (error) {
         console.error("Error logging in user:", error);
-        res.status(500).json({
-            success: false,
-            error: 'Failed to log in user.'
-        });
+        res.status(500).json({ success: false, error: 'Failed to log in user.' });
     }
 });
-
 app.post('/volunteers', async (req, res) => {
     const { name, email, availability, preferredSubjects } = req.body;
     if (!name || !email || !availability || !preferredSubjects) {
@@ -72,12 +65,8 @@ app.post('/volunteers', async (req, res) => {
     }
     try {
         const volunteerRef = db.collection('volunteers').doc();
-        await volunteerRef.set({
-            name,
-            email,
-            availability,
-            preferredSubjects
-        });
+        await volunteerRef.set({ name, email, availability, preferredSubjects });
+
         res.status(201).json({
             success: true,
             message: 'Volunteer availability submitted successfully.',
@@ -85,13 +74,9 @@ app.post('/volunteers', async (req, res) => {
         });
     } catch (error) {
         console.error("Error adding volunteer:", error);
-        res.status(500).json({
-            success: false,
-            error: 'Failed to submit volunteer availability.'
-        });
+        res.status(500).json({ success: false, error: 'Failed to submit volunteer availability.' });
     }
 });
-
 app.get('/volunteers', async (req, res) => {
     try {
         const volunteersSnapshot = await db.collection('volunteers').get();
@@ -100,16 +85,10 @@ app.get('/volunteers', async (req, res) => {
             ...doc.data()
         }));
 
-        res.status(200).json({
-            success: true,
-            volunteers
-        });
+        res.status(200).json({ success: true, volunteers });
     } catch (error) {
         console.error("Error retrieving volunteers:", error);
-        res.status(500).json({
-            success: false,
-            error: 'Failed to retrieve volunteers.'
-        });
+        res.status(500).json({ success: false, error: 'Failed to retrieve volunteers.' });
     }
 });
 
