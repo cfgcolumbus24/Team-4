@@ -12,7 +12,7 @@ Our project aims to address critical challenges faced by teachers and school adm
 
 The Interactive Teacher Dashboard serves as the primary interface to streamline and improve these areas, benefiting teachers, students, and school leaders.
 
-## Features
+## Main Features
 
 ### 1. Interactive Dashboard for Teachers
 
@@ -23,6 +23,22 @@ The Interactive Teacher Dashboard serves as the primary interface to streamline 
 
 - Teachers can submit feedback to the school proprietor, fostering honest communication and enabling the proprietor to understand teachers' needs and concerns.
 - This feature helps identify areas for improvement within the school environment and supports teacher satisfaction and retention.
+
+### 3. Fully functional, customizable user profiles
+
+- Built with React components, the user profile feature allows users to create, view, and update their profiles seamlessly. 
+- Utilizing Firebase, profile data is securely stored and can be retrieved in real time, ensuring users see the latest information.
+
+### 4. Comprehensive Student Performance Analytics
+
+- We integrated Firebase to store and analyze student data, enabling proprietors to access detailed performance metrics, such as class perfomance, students engagement, and progress over time.
+
+### 5. Real-Time Multi-Department Data Display for Proprietors
+
+- Designed with proprietors in mind, this feature aggregates data across multiple departments, such as academics and volunteering by Firebase’s real-time database capabilities. 
+- The interface, developed with React and Tailwind CSS, ensures that data is not only current but also presented in an organized, easy-to-navigate format, empowering proprietors to make data-driven decisions effortlessly.
+
+
 
 ## Goals of the Project
 
