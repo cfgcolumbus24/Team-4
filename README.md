@@ -19,14 +19,9 @@ The Interactive Teacher Dashboard serves as the primary interface to streamline 
 - The dashboard provides teachers with an organized view of their schedules, helping them plan their lessons efficiently and access resources for professional development.
 - Teachers can view and manage their timetables, lesson plans, and assessment schedules, enabling a more structured teaching approach.
 
-### 2. Student Feedback Collection
+### 2. Teacher Feedback
 
-- We collect feedback from students to gather insights on teaching methods, with the goal of improving or adjusting teaching practices to align with student needs.
-- The feedback is anonymous and allows students to rate various teaching methods, providing data-driven insights into teaching effectiveness.
-
-### 3. Anonymous Teacher Feedback
-
-- Teachers can submit anonymous feedback to the school proprietor, fostering honest communication and enabling the proprietor to understand teachers' needs and concerns.
+- Teachers can submit feedback to the school proprietor, fostering honest communication and enabling the proprietor to understand teachers' needs and concerns.
 - This feature helps identify areas for improvement within the school environment and supports teacher satisfaction and retention.
 
 ## Goals of the Project
@@ -41,11 +36,10 @@ This project is designed to:
 
 ## Tech Stack
 
-- **Frontend**: React.js for creating an interactive and user-friendly interface.
-- **Backend**: Node.js and Express.js for handling API requests.
+- **Frontend**: React.js for creating an interactive and user-friendly interface. 
 - **Database**: Firebase to store teacher, student, and feedback data securely.
 - **Styling**: Tailwind CSS for a responsive and customizable design.
-- **Data Collection**: Formspree or Airtable (optional) for handling feedback forms and real-time data collection.
+
 
 ## Installation and Setup
 
